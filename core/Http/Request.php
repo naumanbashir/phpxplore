@@ -4,14 +4,18 @@ namespace Panda\Http;
 
 class Request
 {
-    public function getPath(): string
+    public function __construct(
+        public readonly array $getParams,
+        public readonly array $postParams,
+        public readonly array $cookies,
+        public readonly array $files,
+        public readonly array $server,
+    )
     {
-        $query_string = $_SERVER['QUERY_STRING'];
-        return $_SERVER['REQUEST_URI'];
     }
 
-    public function getMethod(): string
+    public static function createFromGlobals(): static
     {
-        return $_SERVER['REQUEST_METHOD'];
+        return new static($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
     }
 }

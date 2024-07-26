@@ -1,5 +1,5 @@
 {
-    "name": "nauman-bashir/custom_mvc_framework",
+    "name": "nauman-bashir/phppanda",
     "type": "project",
     "authors": [
         {
@@ -10,7 +10,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Panda\\": "Core/"
+            "Panda\\": "core/"
         }
     },
     "require": {
