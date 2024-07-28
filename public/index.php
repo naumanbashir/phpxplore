@@ -1,16 +1,13 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 use Panda\Application;
 
-$request = \Panda\Http\Request::createFromGlobals();
-
-dd($request);
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $rootDir = dirname(__DIR__);
-$app = new Application($rootDir);
-
-$app->run();
+$app = (new Application($rootDir))
+        ->withRouting(
+            web: __DIR__.'/../routes/web.php'
+        );
 
 
