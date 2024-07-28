@@ -12,8 +12,13 @@ class Response
     {
     }
 
-    public function send(): void
+    public function send(): string
     {
-        echo $this->content;
+        return $this->content;
+    }
+
+    public function setStatusCode(string $code): void
+    {
+        http_response_code($code);
     }
 }
