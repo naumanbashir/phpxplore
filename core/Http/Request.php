@@ -2,14 +2,14 @@
 
 namespace Panda\Http;
 
-class Request
+readonly class Request
 {
     public function __construct(
-        public readonly array $getParams,
-        public readonly array $postParams,
-        public readonly array $cookies,
-        public readonly array $files,
-        public readonly array $server,
+        public array $getParams,
+        public array $postParams,
+        public array $cookies,
+        public array $files,
+        public array $server,
     )
     {
     }
@@ -17,5 +17,15 @@ class Request
     public static function createFromGlobals(): static
     {
         return new static($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
+    }
+
+    public function getMethod()
+    {
+        return $this->server['REQUEST_METHOD'];
+    }
+
+    public function getPathInfo()
+    {
+        return $this->server['PATH_INFO'] ?? strtok($this->server['REQUEST_URI'], '?');
     }
 }

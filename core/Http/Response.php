@@ -10,6 +10,7 @@ class Response
         private array $headers = []
     )
     {
+        $this->setStatusCode();
     }
 
     public function send(): string
@@ -17,8 +18,8 @@ class Response
         return $this->content;
     }
 
-    public function setStatusCode(string $code): void
+    private function setStatusCode(): void
     {
-        http_response_code($code);
+        http_response_code($this->statusCode);
     }
 }

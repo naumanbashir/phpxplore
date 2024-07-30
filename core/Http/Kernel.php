@@ -3,40 +3,33 @@
 namespace Panda\Http;
 
 use Closure;
+use FastRoute\RouteCollector;
 use Panda\Application;
+use function FastRoute\simpleDispatcher;
 
 class Kernel
 {
-    public function handle(array $routes, $request): string
+    public Router $router;
+
+    public function __construct()
     {
-        $path = $request->getPath();
-        $method = $request->getMethod();
+        $this->router = Application::$app->router;
+    }
 
-        $handler = $routes[$method][$path] ?? null;
+    public function handle(Request $request): string
+    {
+        $dispatcher = simpleDispatcher(function(RouteCollector $routesCollector) {
+            $this->router->registerRoutes($routesCollector);
+        });
 
-        if (!$handler){
-            Application::$app->response->setStatusCode(404);
-            return 'No route found for "' . $path . '"';
-        }
+        $routeInfo = $dispatcher->dispatch(
+            $request->getMethod(),
+            $request->getPathInfo()
+        );
 
-        /** Check if the Route handler is a Closure */
-        if ($handler instanceof Closure)  return $handler();
+        [$status, [$controller, $method], $vars] = $routeInfo;
 
-        $controller = '';
-        $method = '';
-
-        /** Check if the Route handler is a string with Controller Name and method name imploded with @ */
-        if (is_string($handler))
-            list($controller, $method) = explode('@', $handler);
-
-        /** Check if the Route handler is an array with Controller Name constant and method name */
-        if (is_array($handler)) list($controller, $method) = $handler;
-
-        if (!class_exists($controller))
-            throw new \Exception("Controller '" . $controller . "' does not exist");
-
-        $controller = new $controller();
-        return $controller->{$method}();
+        return (new $controller())->$method();
     }
 
     public function renderView(string $view, $params = []): string

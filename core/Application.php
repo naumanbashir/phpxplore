@@ -2,18 +2,17 @@
 
 namespace Panda;
 
+use FastRoute\RouteCollector;
 use Panda\Http\Kernel;
 use Panda\Http\Request;
-use Panda\Http\Response;
 use Panda\Http\Router;
+use function FastRoute\simpleDispatcher;
 
 class Application
 {
     public static Application $app;
-    public static string $ROOT_DIR;
 
-    public Request $request;
-    public Response $response;
+    public static string $ROOT_DIR;
 
     public Router $router;
 
@@ -21,6 +20,8 @@ class Application
     {
         static::$app = $this;
         static::$ROOT_DIR = $rootPath;
+
+        $this->router = new Router();
     }
 
     public function withRouting(array|string|null $web = null): static
@@ -39,10 +40,8 @@ class Application
         return $this;
     }
 
-    public function handleRequest(Request $request): void
+    public function handleRequest(Request $request)
     {
-        $this->request = $request;
-        $this->router = new Router($this->request);
-        echo $this->router->resolve();
+        echo (new Kernel())->handle($request);
     }
 }

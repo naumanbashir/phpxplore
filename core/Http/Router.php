@@ -2,28 +2,34 @@
 
 namespace Panda\Http;
 
+
+use FastRoute\RouteCollector;
+
 class Router
 {
     protected array $routes;
 
-    public function __construct(
-        public Request $request
-    )
-    {}
-
     public function get($path, $handler): void
     {
-        $this->routes['GET'][$path] = $handler;
+        $this->createRoute('GET', $path, $handler);
     }
 
     public function post($path, $handler): void
     {
-        $this->routes['POST'][$path] = $handler;
+        $this->createRoute('POST', $path, $handler);
     }
 
-    public function resolve()
+    private function createRoute($method, $path, $handler): void
     {
-        return (new Kernel())->handle($this->routes, $this->request);
+        $this->routes[] = [$method, $path, $handler];
+    }
+
+    public function registerRoutes(RouteCollector $collector): void
+    {
+        foreach ($this->routes as $route) {
+            list($method, $path, $handler) = $route;
+            $collector->addRoute($method, $path, $handler);
+        }
     }
 
 }

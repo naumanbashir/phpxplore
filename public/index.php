@@ -11,7 +11,6 @@ $app = (new Application($rootDir))
             web: __DIR__.'/../routes/web.php'
         );
 
-
 $app->handleRequest(Request::createFromGlobals());
 
 
