@@ -2,11 +2,9 @@
 
 namespace Panda;
 
-use FastRoute\RouteCollector;
 use Panda\Http\Kernel;
 use Panda\Http\Request;
-use Panda\Http\Router;
-use function FastRoute\simpleDispatcher;
+use Panda\Routing\Router;
 
 class Application
 {
@@ -40,8 +38,9 @@ class Application
         return $this;
     }
 
-    public function handleRequest(Request $request)
+    public function handleRequest(Request $request): void
     {
-        echo (new Kernel())->handle($request);
+        $response = (new Kernel())->handle($request);
+        echo $response->send();
     }
 }

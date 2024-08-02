@@ -2,34 +2,33 @@
 
 namespace Panda\Http;
 
-use Closure;
 use FastRoute\RouteCollector;
 use Panda\Application;
+use Panda\Routing\Router;
 use function FastRoute\simpleDispatcher;
 
 class Kernel
 {
-    public Router $router;
+    private Router $router;
 
     public function __construct()
     {
         $this->router = Application::$app->router;
     }
 
-    public function handle(Request $request): string
+    public function handle(Request $request): Response
     {
-        $dispatcher = simpleDispatcher(function(RouteCollector $routesCollector) {
-            $this->router->registerRoutes($routesCollector);
-        });
+        try {
 
-        $routeInfo = $dispatcher->dispatch(
-            $request->getMethod(),
-            $request->getPathInfo()
-        );
+            [$routeHandler, $vars] = $this->router->dispatch($request);
 
-        [$status, [$controller, $method], $vars] = $routeInfo;
+            $response =  call_user_func_array($routeHandler, $vars);
 
-        return (new $controller())->$method();
+        } catch (\Exception $exception) {
+            $response = new Response($exception->getMessage(), 400);
+        }
+
+        return $response;
     }
 
     public function renderView(string $view, $params = []): string
