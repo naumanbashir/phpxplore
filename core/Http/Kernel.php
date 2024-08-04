@@ -25,7 +25,7 @@ class Kernel
             $response =  call_user_func_array($routeHandler, $vars);
 
         } catch (\Exception $exception) {
-            $response = new Response($exception->getMessage(), 400);
+            $response = new Response($exception->getMessage(), $exception->getCode());
         }
 
         return $response;
