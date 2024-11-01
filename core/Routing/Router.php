@@ -16,7 +16,7 @@ class Router implements RouterInterface
 
     public function route($method, $path, $handler): void
     {
-        $this->routes[] = [$method, $path, $handler];
+        $this->routes[] = [strtoupper($method), $path, $handler];
     }
 
     public function registerRoutes(RouteCollector $collector): void

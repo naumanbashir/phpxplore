@@ -26,7 +26,6 @@ class Application
     {
         if (is_string($web)) {
             include_once $web;
-
         };
 
         if (is_array($web)) {
