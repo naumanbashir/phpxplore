@@ -1,6 +1,6 @@
 <?php
 
-namespace Panda\Exceptions;
+namespace Xplore\Exceptions;
 
 use Throwable;
 

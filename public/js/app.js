@@ -3,7 +3,7 @@
 
 /***/ "./node_modules/@popperjs/core/lib/createPopper.js":
 /*!*********************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/createPopper.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/createPopper.js ***!
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -227,7 +227,7 @@ var createPopper = /*#__PURE__*/popperGenerator(); // eslint-disable-next-line i
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/contains.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/contains.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/contains.js ***!
   \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -265,7 +265,7 @@ function contains(parent, child) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getBoundingClientRect.js":
 /*!****************************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getBoundingClientRect.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getBoundingClientRect.js ***!
   \****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -324,7 +324,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getClippingRect.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getClippingRect.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getClippingRect.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -422,7 +422,7 @@ function getClippingRect(element, boundary, rootBoundary, strategy) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getCompositeRect.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getCompositeRect.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getCompositeRect.js ***!
   \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -502,7 +502,7 @@ function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getComputedStyle.js ***!
   \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -521,7 +521,7 @@ function getComputedStyle(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js":
 /*!*************************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getDocumentElement.js ***!
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -542,7 +542,7 @@ function getDocumentElement(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentRect.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getDocumentRect.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getDocumentRect.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -590,7 +590,7 @@ function getDocumentRect(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getHTMLElementScroll.js":
 /*!***************************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getHTMLElementScroll.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getHTMLElementScroll.js ***!
   \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -610,7 +610,7 @@ function getHTMLElementScroll(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getLayoutRect.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getLayoutRect.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getLayoutRect.js ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -650,7 +650,7 @@ function getLayoutRect(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getNodeName.js ***!
   \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -667,7 +667,7 @@ function getNodeName(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getNodeScroll.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getNodeScroll.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getNodeScroll.js ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -696,7 +696,7 @@ function getNodeScroll(node) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getOffsetParent.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getOffsetParent.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getOffsetParent.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -786,7 +786,7 @@ function getOffsetParent(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getParentNode.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getParentNode.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getParentNode.js ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -822,7 +822,7 @@ function getParentNode(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getScrollParent.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getScrollParent.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getScrollParent.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -856,7 +856,7 @@ function getScrollParent(node) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getViewportRect.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getViewportRect.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getViewportRect.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -905,7 +905,7 @@ function getViewportRect(element, strategy) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getWindow.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getWindow.js ***!
   \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -931,7 +931,7 @@ function getWindow(node) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getWindowScroll.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getWindowScroll.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getWindowScroll.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -956,7 +956,7 @@ function getWindowScroll(node) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/getWindowScrollBarX.js":
 /*!**************************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/getWindowScrollBarX.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/getWindowScrollBarX.js ***!
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -986,7 +986,7 @@ function getWindowScrollBarX(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/instanceOf.js ***!
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1026,7 +1026,7 @@ function isShadowRoot(node) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/isLayoutViewport.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/isLayoutViewport.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/isLayoutViewport.js ***!
   \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1045,7 +1045,7 @@ function isLayoutViewport() {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/isScrollParent.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/isScrollParent.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/isScrollParent.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1070,7 +1070,7 @@ function isScrollParent(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/isTableElement.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/isTableElement.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/isTableElement.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1089,7 +1089,7 @@ function isTableElement(element) {
 
 /***/ "./node_modules/@popperjs/core/lib/dom-utils/listScrollParents.js":
 /*!************************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/dom-utils/listScrollParents.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/dom-utils/listScrollParents.js ***!
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1133,7 +1133,7 @@ function listScrollParents(element, list) {
 
 /***/ "./node_modules/@popperjs/core/lib/enums.js":
 /*!**************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/enums.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/enums.js ***!
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1201,7 +1201,7 @@ var modifierPhases = [beforeRead, read, afterRead, beforeMain, main, afterMain, 
 
 /***/ "./node_modules/@popperjs/core/lib/index.js":
 /*!**************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/index.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/index.js ***!
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1266,7 +1266,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./node_modules/@popperjs/core/lib/modifiers/applyStyles.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/modifiers/applyStyles.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/modifiers/applyStyles.js ***!
   \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1366,7 +1366,7 @@ function effect(_ref2) {
 
 /***/ "./node_modules/@popperjs/core/lib/modifiers/arrow.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/modifiers/arrow.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/modifiers/arrow.js ***!
   \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1479,7 +1479,7 @@ function effect(_ref2) {
 
 /***/ "./node_modules/@popperjs/core/lib/modifiers/computeStyles.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/modifiers/computeStyles.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/modifiers/computeStyles.js ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1671,7 +1671,7 @@ function computeStyles(_ref5) {
 
 /***/ "./node_modules/@popperjs/core/lib/modifiers/eventListeners.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/modifiers/eventListeners.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/modifiers/eventListeners.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1735,7 +1735,7 @@ function effect(_ref) {
 
 /***/ "./node_modules/@popperjs/core/lib/modifiers/flip.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/modifiers/flip.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/modifiers/flip.js ***!
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1903,7 +1903,7 @@ function flip(_ref) {
 
 /***/ "./node_modules/@popperjs/core/lib/modifiers/hide.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/modifiers/hide.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/modifiers/hide.js ***!
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1980,7 +1980,7 @@ function hide(_ref) {
 
 /***/ "./node_modules/@popperjs/core/lib/modifiers/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/modifiers/index.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/modifiers/index.js ***!
   \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2020,7 +2020,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./node_modules/@popperjs/core/lib/modifiers/offset.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/modifiers/offset.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/modifiers/offset.js ***!
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2091,7 +2091,7 @@ function offset(_ref2) {
 
 /***/ "./node_modules/@popperjs/core/lib/modifiers/popperOffsets.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/modifiers/popperOffsets.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/modifiers/popperOffsets.js ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2131,7 +2131,7 @@ function popperOffsets(_ref) {
 
 /***/ "./node_modules/@popperjs/core/lib/modifiers/preventOverflow.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/modifiers/preventOverflow.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/modifiers/preventOverflow.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2298,7 +2298,7 @@ function preventOverflow(_ref) {
 
 /***/ "./node_modules/@popperjs/core/lib/popper-lite.js":
 /*!********************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/popper-lite.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/popper-lite.js ***!
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2332,7 +2332,7 @@ var createPopper = /*#__PURE__*/(0,_createPopper_js__WEBPACK_IMPORTED_MODULE_4__
 
 /***/ "./node_modules/@popperjs/core/lib/popper.js":
 /*!***************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/popper.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/popper.js ***!
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2392,7 +2392,7 @@ var createPopper = /*#__PURE__*/(0,_createPopper_js__WEBPACK_IMPORTED_MODULE_9__
 
 /***/ "./node_modules/@popperjs/core/lib/utils/computeAutoPlacement.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/computeAutoPlacement.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/computeAutoPlacement.js ***!
   \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2453,7 +2453,7 @@ function computeAutoPlacement(state, options) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/computeOffsets.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/computeOffsets.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/computeOffsets.js ***!
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2541,7 +2541,7 @@ function computeOffsets(_ref) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/debounce.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/debounce.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/debounce.js ***!
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2570,7 +2570,7 @@ function debounce(fn) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/detectOverflow.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/detectOverflow.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/detectOverflow.js ***!
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2658,7 +2658,7 @@ function detectOverflow(state, options) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/expandToHashMap.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/expandToHashMap.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/expandToHashMap.js ***!
   \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2678,7 +2678,7 @@ function expandToHashMap(value, keys) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/getAltAxis.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/getAltAxis.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/getAltAxis.js ***!
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2695,7 +2695,7 @@ function getAltAxis(axis) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/getBasePlacement.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/getBasePlacement.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/getBasePlacement.js ***!
   \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2713,7 +2713,7 @@ function getBasePlacement(placement) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/getFreshSideObject.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/getFreshSideObject.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/getFreshSideObject.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2735,7 +2735,7 @@ function getFreshSideObject() {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/getMainAxisFromPlacement.js":
 /*!***************************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/getMainAxisFromPlacement.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/getMainAxisFromPlacement.js ***!
   \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2752,7 +2752,7 @@ function getMainAxisFromPlacement(placement) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/getOppositePlacement.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/getOppositePlacement.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/getOppositePlacement.js ***!
   \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2777,7 +2777,7 @@ function getOppositePlacement(placement) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/getOppositeVariationPlacement.js":
 /*!********************************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/getOppositeVariationPlacement.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/getOppositeVariationPlacement.js ***!
   \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2800,7 +2800,7 @@ function getOppositeVariationPlacement(placement) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/getVariation.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/getVariation.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/getVariation.js ***!
   \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2817,7 +2817,7 @@ function getVariation(placement) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/math.js":
 /*!*******************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/math.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/math.js ***!
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2836,7 +2836,7 @@ var round = Math.round;
 
 /***/ "./node_modules/@popperjs/core/lib/utils/mergeByName.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/mergeByName.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/mergeByName.js ***!
   \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2864,7 +2864,7 @@ function mergeByName(modifiers) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/mergePaddingObject.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/mergePaddingObject.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/mergePaddingObject.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2883,7 +2883,7 @@ function mergePaddingObject(paddingObject) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/orderModifiers.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/orderModifiers.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/orderModifiers.js ***!
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2942,7 +2942,7 @@ function orderModifiers(modifiers) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/rectToClientRect.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/rectToClientRect.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/rectToClientRect.js ***!
   \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2964,7 +2964,7 @@ function rectToClientRect(rect) {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/userAgent.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/userAgent.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/userAgent.js ***!
   \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2989,7 +2989,7 @@ function getUAString() {
 
 /***/ "./node_modules/@popperjs/core/lib/utils/within.js":
 /*!*********************************************************!*\
-  !*** ./node_modules/@popperjs/core/lib/utils/within.js ***!
+  !*** ./node_modules/@popperjs/xplore/lib/utils/within.js ***!
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -3074,8 +3074,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Toast: () => (/* binding */ Toast),
 /* harmony export */   Tooltip: () => (/* binding */ Tooltip)
 /* harmony export */ });
-/* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/index.js");
-/* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/popper.js");
+/* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @popperjs/xplore */ "./node_modules/@popperjs/core/lib/index.js");
+/* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @popperjs/xplore */ "./node_modules/@popperjs/core/lib/popper.js");
 /*!
   * Bootstrap v5.3.3 (https://getbootstrap.com/)
   * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)

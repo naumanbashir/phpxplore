@@ -1,3 +1,3 @@
-## PHP Panda
+## PHPXplore
 
-PHP Panda is a custom web application framework:
+PHPXplore is a custom web application framework:

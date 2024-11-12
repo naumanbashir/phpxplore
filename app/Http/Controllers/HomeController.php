@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Panda\Http\Response;
+use Xplore\Http\Response;
 
 class HomeController extends Controller
 {

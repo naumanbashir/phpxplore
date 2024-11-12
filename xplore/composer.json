@@ -1,0 +1,24 @@
+{
+    "name": "phpxplore/framework",
+    "description": "Custom PHP Framework.",
+    "keywords": ["framework", "phpxplore"],
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nauman Bashir",
+            "email": "naumanbashir.dev@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Xplore\\": "src/"
+        }
+    },
+    "require-dev" : {
+        "symfony/var-dumper": "^7.1"
+    },
+    "require": {
+        "nikic/fast-route": "^1.3"
+    }
+}

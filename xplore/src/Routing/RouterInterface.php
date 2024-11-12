@@ -1,8 +1,8 @@
 <?php
 
-namespace Panda\Routing;
+namespace Xplore\Routing;
 
-use Panda\Http\Request;
+use Xplore\Http\Request;
 
 interface RouterInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Panda\Routing;
+namespace Xplore\Routing;
 
 
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
-use Panda\Exceptions\HttpException;
-use Panda\Exceptions\HttpRequestMethodException;
-use Panda\Http\Request;
+use Xplore\Exceptions\HttpException;
+use Xplore\Exceptions\HttpRequestMethodException;
+use Xplore\Http\Request;
 use function FastRoute\simpleDispatcher;
 
 class Router implements RouterInterface

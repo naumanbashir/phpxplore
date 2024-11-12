@@ -1,6 +1,6 @@
 <?php
 
-namespace Panda\Exceptions;
+namespace Xplore\Exceptions;
 
 class HttpException extends \Exception
 {

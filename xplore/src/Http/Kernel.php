@@ -1,11 +1,9 @@
 <?php
 
-namespace Panda\Http;
+namespace Xplore\Http;
 
-use FastRoute\RouteCollector;
-use Panda\Application;
-use Panda\Routing\Router;
-use function FastRoute\simpleDispatcher;
+use Xplore\Application;
+use Xplore\Routing\Router;
 
 class Kernel
 {

@@ -1,8 +1,8 @@
 <?php
 
-use Panda\Application;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
+use Xplore\Application;
 
 $app = Application::$app;
 

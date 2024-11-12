@@ -1,6 +1,6 @@
 <?php
 
-namespace Panda\Http;
+namespace Xplore\Http;
 
 class Response
 {

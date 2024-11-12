@@ -1,7 +1,7 @@
 <?php
 
-use Panda\Application;
-use Panda\Http\Request;
+use Xplore\Application;
+use Xplore\Http\Request;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Panda;
+namespace Xplore;
 
-use Panda\Http\Kernel;
-use Panda\Http\Request;
-use Panda\Routing\Router;
+use Xplore\Http\Kernel;
+use Xplore\Http\Request;
+use Xplore\Routing\Router;
 
 class Application
 {
