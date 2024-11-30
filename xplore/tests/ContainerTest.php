@@ -31,4 +31,29 @@ class ContainerTest extends TestCase
         // Do something
         $container->add('foobar');
     }
+
+    #[Test]
+    public function can_check_if_the_container_has_a_service(): void
+    {
+        // Setup
+        $container = new Container();
+
+        // Do something
+        $container->add('dependant-class', DependantClass::class);
+
+        $this->assertTrue($container->has('dependant-class'));
+        $this->assertFalse($container->has('non-existent-class'));
+    }
+
+    #[Test]
+    public function services_can_be_recursively_autowired()
+    {
+        $container = new Container();
+
+        $container->add('dependant-service', DependantClass::class);
+
+        $dependantService = $container->get('dependant-service');
+
+        $this->assertInstanceOf(DependencyClass::class, $dependantService->getDependency());
+    }
 }
