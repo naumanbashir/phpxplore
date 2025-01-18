@@ -3,6 +3,7 @@
 namespace Xplore\Classes;
 
 use Psr\Container\ContainerInterface;
+use ReflectionParameter;
 use Xplore\Exceptions\ContainerException;
 
 class Container implements ContainerInterface
@@ -38,6 +39,45 @@ class Container implements ContainerInterface
         $object = $this->resolve($this->services[$id]);
 
         return $object;
+    }
+
+    private function resolve($class)
+    {
+        $reflectionClass = new \ReflectionClass($class);
+        $constructor = $reflectionClass->getConstructor();
+
+        if (null === $constructor) {
+            return $reflectionClass->newInstance();
+        }
+
+        $constructorParams = $constructor->getParameters();
+        $classDependencies = $this->resolveClassDependencies($constructorParams);
+
+        $service = $reflectionClass->newInstanceArgs($classDependencies);
+
+        // 7. Return the object
+        return $service;
+    }
+
+    private function resolveClassDependencies(array $reflectionParameters): array
+    {
+        $classDependencies = [];
+
+        /** @var ReflectionParameter $parameter */
+        foreach ($reflectionParameters as $parameter) {
+
+            // Get the parameter's ReflectionNamedType as $serviceType
+            $serviceType = $parameter->getType();
+
+            // Try to instantiate using $serviceType's name
+            $service = $this->get($serviceType->getName());
+
+            // Add the service to the classDependencies array
+            $classDependencies[] = $service;
+        }
+
+        // 3. Return the classDependencies array
+        return $classDependencies;
     }
 
     /**

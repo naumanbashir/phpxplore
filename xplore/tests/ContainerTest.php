@@ -22,23 +22,16 @@ class ContainerTest extends TestCase
     #[Test]
     public function a_ContainerException_is_thrown_if_a_service_cannot_be_found()
     {
-        // Setup
         $container = new Container();
-
-        // Expect exception
         $this->expectException(ContainerException::class);
 
-        // Do something
         $container->add('foobar');
     }
 
     #[Test]
     public function can_check_if_the_container_has_a_service(): void
     {
-        // Setup
         $container = new Container();
-
-        // Do something
         $container->add('dependant-class', DependantClass::class);
 
         $this->assertTrue($container->has('dependant-class'));
@@ -50,10 +43,11 @@ class ContainerTest extends TestCase
     {
         $container = new Container();
 
-        $container->add('dependant-service', DependantClass::class);
+        $dependantService = $container->get(DependantClass::class);
 
-        $dependantService = $container->get('dependant-service');
+        $dependancyService = $dependantService->getDependency();
 
-        $this->assertInstanceOf(DependencyClass::class, $dependantService->getDependency());
+        $this->assertInstanceOf(DependencyClass::class, $dependancyService);
+        $this->assertInstanceOf(SubDependencyClass::class, $dependancyService->getSubDependency());
     }
 }
