@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
-use Xplore\Application;
+use Xplore\Routing\Router;
 
-$app = Application::$app;
+$container = \Xplore\Application::$container;
+$router = $container->get(\Xplore\Routing\RouterInterface::class);
 
-$app->router->route('get', '/', [HomeController::class, 'index']);
-$app->router->route('get', '/posts/{id:\d+}', [PostsController::class, 'index']);
+$router->route('get', '/', [HomeController::class, 'index']);
+$router->route('get', '/posts/{id:\d+}', [PostsController::class, 'index']);

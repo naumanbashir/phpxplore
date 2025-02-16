@@ -4,20 +4,18 @@ namespace Xplore\Http;
 
 use Xplore\Application;
 use Xplore\Routing\Router;
+use Xplore\Routing\RouterInterface;
 
 class Kernel
 {
-    private Router $router;
 
-    public function __construct()
+    public function __construct(private RouterInterface $router)
     {
-        $this->router = Application::$app->router;
     }
 
     public function handle(Request $request): Response
     {
         try {
-
             [$routeHandler, $vars] = $this->router->dispatch($request);
 
             $response =  call_user_func_array($routeHandler, $vars);

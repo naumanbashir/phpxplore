@@ -1,16 +1,14 @@
 <?php
 
-use Xplore\Application;
+declare(strict_types=1);
+
 use Xplore\Http\Request;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+define('APP_ROOT', dirname(__DIR__));
 
-$rootDir = dirname(__DIR__);
-$app = (new Application($rootDir))
-        ->withRouting(
-            web: __DIR__.'/../routes/web.php'
-        );
+require_once APP_ROOT . '/vendor/autoload.php';
 
-$app->handleRequest(Request::createFromGlobals());
+(require_once APP_ROOT . '/bootstrap/app.php')
+    ->handleRequest(Request::createFromGlobals());
 
 

@@ -12,16 +12,17 @@ use function FastRoute\simpleDispatcher;
 
 class Router implements RouterInterface
 {
-    protected array $routes;
+    public static array $routes;
 
     public function route($method, $path, $handler): void
     {
-        $this->routes[] = [strtoupper($method), $path, $handler];
+        static::$routes[] = [strtoupper($method), $path, $handler];
+
     }
 
     public function registerRoutes(RouteCollector $collector): void
     {
-        foreach ($this->routes as $route) {
+        foreach (static::$routes as $route) {
             $collector->addRoute(...$route);
         }
     }
@@ -41,6 +42,7 @@ class Router implements RouterInterface
         $dispatcher = simpleDispatcher(function(RouteCollector $routesCollector) {
             $this->registerRoutes($routesCollector);
         });
+
 
         $routeInfo = $dispatcher->dispatch(
             $request->getMethod(),

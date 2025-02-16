@@ -2,7 +2,7 @@
     "name": "phpxplore/framework",
     "description": "Custom PHP Framework.",
     "keywords": ["framework", "phpxplore"],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "license": "MIT",
     "authors": [
         {
@@ -26,6 +26,7 @@
     },
     "require": {
         "nikic/fast-route": "^1.3",
-        "psr/container": "^2.0"
+        "psr/container": "^2.0",
+        "league/container": "4.2.4"
     }
 }

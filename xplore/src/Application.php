@@ -2,6 +2,7 @@
 
 namespace Xplore;
 
+use League\Container\Container;
 use Xplore\Http\Kernel;
 use Xplore\Http\Request;
 use Xplore\Routing\Router;
@@ -12,14 +13,18 @@ class Application
 
     public static string $ROOT_DIR;
 
-    public Router $router;
+    public static Container $container;
 
     public function __construct($rootPath)
     {
         static::$app = $this;
         static::$ROOT_DIR = $rootPath;
+    }
 
-        $this->router = new Router();
+    public function withContainer($container): Application
+    {
+        static::$container = $container;
+        return static::$app;
     }
 
     public function withRouting(array|string|null $web = null): static
@@ -39,7 +44,8 @@ class Application
 
     public function handleRequest(Request $request): void
     {
-        $response = (new Kernel())->handle($request);
+        $kernel = static::$container->get(Kernel::class);
+        $response = $kernel->handle($request);
         echo $response->send();
     }
 }
