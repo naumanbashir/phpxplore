@@ -1,9 +1,11 @@
 <?php
 
+use \Xplore\Exceptions\ErrorHandler;
+
+ErrorHandler::register();
+
 $container = require_once APP_ROOT . '/bootstrap/services.php';
 
-return (new \Xplore\Application(APP_ROOT))
-    ->withContainer($container)
-    ->withRouting(
-        web: __DIR__.'/../routes/web.php'
-    );
+$app = $container->get(\Xplore\Application::class);
+
+return $app->withRouting(web: __DIR__.'/../routes/web.php');

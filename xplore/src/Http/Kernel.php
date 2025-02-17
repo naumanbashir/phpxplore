@@ -2,21 +2,22 @@
 
 namespace Xplore\Http;
 
+use Psr\Container\ContainerInterface;
 use Xplore\Application;
 use Xplore\Routing\Router;
 use Xplore\Routing\RouterInterface;
 
 class Kernel
 {
-
-    public function __construct(private RouterInterface $router)
-    {
-    }
+    public function __construct(
+        private RouterInterface $router,
+        private ContainerInterface $container,
+    ) {}
 
     public function handle(Request $request): Response
     {
         try {
-            [$routeHandler, $vars] = $this->router->dispatch($request);
+            [$routeHandler, $vars] = $this->router->dispatch($request, $this->container);
 
             $response =  call_user_func_array($routeHandler, $vars);
 
@@ -38,7 +39,7 @@ class Kernel
     private function renderLayout(): string
     {
         ob_start();
-        include_once Application::$ROOT_DIR . '/resources/views/layouts/app.php';
+        include_once Application::$ROOT_DIR . '/resources/views/layouts/services.php';
         return ob_get_clean();
     }
 

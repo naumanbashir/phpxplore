@@ -4,7 +4,7 @@ namespace Xplore\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use Xplore\Classes\Container;
+use Xplore\Container\Container;
 use Xplore\Exceptions\ContainerException;
 
 class ContainerTest extends TestCase

@@ -2,9 +2,9 @@
 
 namespace Xplore\Routing;
 
-
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
+use Psr\Container\ContainerInterface;
 use Xplore\Exceptions\HttpException;
 use Xplore\Exceptions\HttpRequestMethodException;
 use Xplore\Http\Request;
@@ -14,7 +14,7 @@ class Router implements RouterInterface
 {
     public static array $routes;
 
-    public function route($method, $path, $handler): void
+    public static function route($method, $path, $handler): void
     {
         static::$routes[] = [strtoupper($method), $path, $handler];
 
@@ -27,14 +27,18 @@ class Router implements RouterInterface
         }
     }
 
-    public function dispatch(Request $request): array
+    public function dispatch(Request $request, ContainerInterface $container): array
     {
         $routeInfo = $this->getRouteInfo($request);
 
         [$handler, $vars] = $routeInfo;
-        [$controller, $method] = $handler;
 
-        return [[new $controller, $method], $vars];
+        if (is_array($handler)) {
+            [$controllerId, $method] = $handler;
+            $controller = $container->get($controllerId);
+        }
+
+        return [[$controller, $method], $vars];
     }
 
     private function getRouteInfo(Request $request): array

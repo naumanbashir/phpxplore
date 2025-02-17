@@ -1,6 +1,6 @@
 <?php
 
-namespace Xplore\Classes;
+namespace Xplore\Container;
 
 use Psr\Container\ContainerInterface;
 use ReflectionParameter;
