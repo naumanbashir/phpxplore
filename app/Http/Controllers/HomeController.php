@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return $this->render('home.html.twig');
+        $title = 'Hello World!';
+        return $this->render('home.html.twig', compact('title'));
     }
 }
