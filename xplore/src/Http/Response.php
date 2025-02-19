@@ -4,8 +4,8 @@ namespace Xplore\Http;
 
 class Response
 {
+    private string $content;
     public function __construct(
-        private ?string $content,
         private int $statusCode = 200,
         private array $headers = []
     )
@@ -16,6 +16,11 @@ class Response
     public function send(): string
     {
         return $this->content;
+    }
+
+    public function setContent(?string $content): void
+    {
+        $this->content = $content;
     }
 
     private function setStatusCode(): void

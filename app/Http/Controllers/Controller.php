@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
-abstract class Controller
+use Xplore\Controller\BaseController;
+
+abstract class Controller extends BaseController
 {
 }

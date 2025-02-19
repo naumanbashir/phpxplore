@@ -15,6 +15,6 @@
         "symfony/var-dumper": "^7.1"
     },
     "require": {
-        "phpxplore/framework": "dev-main",
+        "phpxplore/framework": "dev-main"
     }
 }

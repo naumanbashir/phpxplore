@@ -11,13 +11,17 @@ use Xplore\Routing\RouterInterface;
 
 class Application
 {
-    private string $appEnv;
+    public static string $appEnv;
 
     public function __construct(
         private RouterInterface $router,
-        private ContainerInterface $container,
-    ) {
-        $this->appEnv = $this->container->get('APP_ENV');
+        private ContainerInterface $container
+    )
+    {
+        $dotenv = new \Symfony\Component\Dotenv\Dotenv();
+        $dotenv->load(BASE_PATH . '/.env');
+
+        static::$appEnv = $_ENV['APP_ENV'] ?? 'dev';
     }
 
     public function withRouting(array|string|null $web = null): static
@@ -54,7 +58,7 @@ class Application
      */
     private function createExceptionResponse(\Exception $exception): Response
     {
-        if (in_array($this->appEnv, ['dev', 'test']))
+        if (in_array(static::$appEnv, ['dev', 'test']))
             throw $exception;
 
         if ($exception instanceof HttpException)
