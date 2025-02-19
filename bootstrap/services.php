@@ -1,9 +1,17 @@
 <?php
 
-use Symfony\Bridge\Twig\Extension\AssetExtension;
+use Doctrine\DBAL\Configuration;
+use Doctrine\DBAL\Connection;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Xplore\Dbal\ConnectionFactory;
 use Xplore\Routing\RouterInterface;
+
+/** ---------------- Environment Variables --------------- */
+$dotenv = new \Symfony\Component\Dotenv\Dotenv();
+$dotenv->load(BASE_PATH . '/.env');
+
+require_once BASE_PATH . '/xplore/src/Support/helpers.php';
 
 /** ---------------- Container Initialization --------------- */
 $container = new League\Container\Container();
@@ -16,7 +24,7 @@ $container->add(\Xplore\Application::class)
     ->addArgument(RouterInterface::class)
     ->addArgument($container);
 
-/** ---------------------- Add Templating in Container ---------------------- */
+/** ---------------------- Twig Templating Engine ---------------------- */
 $viewsPath = BASE_PATH . '/resources/views';
 $cachePath = BASE_PATH . '/storage/cache/twig';
 
@@ -30,7 +38,7 @@ $container->addShared('twig', function () use ($container, $cachePath) {
         'cache' => $cachePath
     ]);
 
-    $twig->addGlobal('APP_NAME', $_ENV['APP_NAME']);
+    $twig->addGlobal('APP_NAME', getenv('APP_NAME'));
 
     $twig->addFunction(new \Twig\TwigFunction('asset', function ($path) {
         return '/public/' . ltrim($path, '/');
@@ -42,6 +50,12 @@ $container->addShared('twig', function () use ($container, $cachePath) {
 $container->inflector(\Xplore\Controller\BaseController::class)
     ->invokeMethod('setContainer', [$container]);
 
+/** ---------------------- Database Abstraction Layer ---------------------- */
+$container->addShared(ConnectionFactory::class)
+    ->addArgument(new Configuration());
 
+$container->addShared(Connection::class, function () use ($container): Connection {
+    return $container->get(ConnectionFactory::class)->create();
+});
 
 return $container;

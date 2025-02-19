@@ -6,3 +6,4 @@ use Xplore\Routing\Router;
 
 Router::route('get', '/', [HomeController::class, 'index']);
 Router::route('get', '/posts/{id:\d+}', [PostsController::class, 'index']);
+Router::route('get', '/posts/add', [PostsController::class, 'create']);

@@ -2,6 +2,7 @@
 
 namespace Xplore;
 
+use Doctrine\DBAL\Connection;
 use Psr\Container\ContainerInterface;
 use Xplore\Exceptions\HttpException;
 use Xplore\Http\HttpResponse;
@@ -18,10 +19,7 @@ class Application
         private ContainerInterface $container
     )
     {
-        $dotenv = new \Symfony\Component\Dotenv\Dotenv();
-        $dotenv->load(BASE_PATH . '/.env');
-
-        static::$appEnv = $_ENV['APP_ENV'] ?? 'dev';
+        static::$appEnv = env('APP_ENV', 'dev');
     }
 
     public function withRouting(array|string|null $web = null): static
@@ -62,8 +60,8 @@ class Application
             throw $exception;
 
         if ($exception instanceof HttpException)
-            return new Response($exception->getMessage(), $exception->getCode());
+            return (new Response($exception->getCode()))->setContent($exception->getMessage());
 
-        return new Response('Server Error', HttpResponse::INTERNAL_SERVER_ERROR);
+        return (new Response(HttpResponse::INTERNAL_SERVER_ERROR))->setContent('Server Error');
     }
 }

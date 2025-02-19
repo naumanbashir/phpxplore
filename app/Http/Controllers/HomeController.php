@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Xplore\Classes\Widget;
-use Xplore\Http\Response;
-
 class HomeController extends Controller
 {
     public function index()
     {
-        $title = 'Hello World!';
+        $title = env('APP_NAME');
         return $this->render('home.html.twig', compact('title'));
     }
 }

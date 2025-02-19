@@ -5,12 +5,16 @@ namespace Xplore\Http;
 class Response
 {
     private string $content;
-    public function __construct(
-        private int $statusCode = 200,
-        private array $headers = []
-    )
+    private array $headers = [];
+
+    public function __construct(private int $statusCode = HttpResponse::OK)
     {
         $this->setStatusCode();
+    }
+
+    private function setStatusCode(): void
+    {
+        http_response_code($this->statusCode);
     }
 
     public function send(): string
@@ -18,13 +22,16 @@ class Response
         return $this->content;
     }
 
-    public function setContent(?string $content): void
+    public function setContent(?string $content): self
     {
         $this->content = $content;
+        return $this;
     }
 
-    private function setStatusCode(): void
+    public function setHeaders(array $headers): self
     {
-        http_response_code($this->statusCode);
+        $this->headers = $headers;
+        return $this;
     }
+
 }
