@@ -13,10 +13,7 @@
     "autoload": {
         "psr-4": {
             "Xplore\\": "src/"
-        },
-        "files": [
-            "src/Support/helpers.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {

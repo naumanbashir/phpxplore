@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+
+<?php
+
+use Xplore\Console\Kernel;
+
+define('BASE_PATH', dirname(__DIR__));
+
+require_once BASE_PATH . '/vendor/autoload.php';
+
+/** @var \Psr\Container\ContainerInterface $container */
+$container = require BASE_PATH . '/bootstrap/services.php';
+
+$kernel = $container->get(Kernel::class);
+
+$status = $kernel->handle();
+
+exit($status);
