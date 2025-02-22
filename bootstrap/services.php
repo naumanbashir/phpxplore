@@ -4,6 +4,7 @@ use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Xplore\Console\Application;
 use Xplore\Dbal\ConnectionFactory;
 use Xplore\Routing\RouterInterface;
 
@@ -22,6 +23,9 @@ $container->addShared(RouterInterface::class, \Xplore\Routing\Router::class);
 
 $container->add(\Xplore\Application::class)
     ->addArgument(RouterInterface::class)
+    ->addArgument($container);
+
+$container->add(Application::class)
     ->addArgument($container);
 
 /** ---------------------- Twig Templating Engine ---------------------- */
@@ -60,5 +64,10 @@ $container->addShared(Connection::class, function () use ($container): Connectio
 
 $container->add(\Xplore\Console\Kernel::class)
     ->addArgument($container);
+
+$container->add(
+    'base-commands-namespace',
+    new \League\Container\Argument\Literal\StringArgument('GaryClarke\\Framework\\Console\\Command\\')
+);
 
 return $container;
