@@ -4,7 +4,7 @@ namespace Xplore\Console;
 
 class StubLoader
 {
-    public static function loadStub(string $stubPath, array $replacements): string
+    public static function loadStub(string $stubPath, array $replacements = []): string
     {
         if (!file_exists($stubPath)) {
             throw new \Exception("Stub file not found: $stubPath");

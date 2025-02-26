@@ -4,9 +4,10 @@ use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use Xplore\Console\Application;
+use Xplore\Application;
 use Xplore\Dbal\ConnectionFactory;
 use Xplore\Routing\RouterInterface;
+use \Xplore\Console as Console;
 
 /** ---------------- Environment Variables --------------- */
 $dotenv = new \Symfony\Component\Dotenv\Dotenv();
@@ -21,11 +22,8 @@ $container->delegate(new League\Container\ReflectionContainer(true));
 
 $container->addShared(RouterInterface::class, \Xplore\Routing\Router::class);
 
-$container->add(\Xplore\Application::class)
-    ->addArgument(RouterInterface::class)
-    ->addArgument($container);
-
 $container->add(Application::class)
+    ->addArgument(RouterInterface::class)
     ->addArgument($container);
 
 /** ---------------------- Twig Templating Engine ---------------------- */
@@ -62,12 +60,17 @@ $container->addShared(Connection::class, function () use ($container): Connectio
     return $container->get(ConnectionFactory::class)->create();
 });
 
-$container->add(\Xplore\Console\Kernel::class)
+
+/** ---------------------- Console Command ---------------------- */
+$container->add(Console\Kernel::class)
+    ->addArguments([$container, Console\Application::class]);
+
+$container->add(Console\Application::class)
     ->addArgument($container);
 
 $container->add(
     'base-commands-namespace',
-    new \League\Container\Argument\Literal\StringArgument('GaryClarke\\Framework\\Console\\Command\\')
+    new \League\Container\Argument\Literal\StringArgument('Xplore\\Console\\Command\\')
 );
 
 return $container;

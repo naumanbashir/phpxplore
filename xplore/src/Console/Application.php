@@ -27,7 +27,6 @@ class Application
 
         $status = $command->execute($options);
 
-        // Return the status code
         return $status;
     }
 
@@ -40,7 +39,8 @@ class Application
                 // This is an option
                 $option = explode('=', substr($arg, 2));
                 $options[$option[0]] = $option[1] ?? true;
-
+            } else {
+                $options['resource'] = $arg;
             }
         }
 
