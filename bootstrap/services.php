@@ -1,6 +1,5 @@
 <?php
 
-use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -53,8 +52,7 @@ $container->inflector(\Xplore\Controller\BaseController::class)
     ->invokeMethod('setContainer', [$container]);
 
 /** ---------------------- Database Abstraction Layer ---------------------- */
-$container->addShared(ConnectionFactory::class)
-    ->addArgument(new Configuration());
+$container->add(ConnectionFactory::class);
 
 $container->addShared(Connection::class, function () use ($container): Connection {
     return $container->get(ConnectionFactory::class)->create();
@@ -72,5 +70,10 @@ $container->add(
     'base-commands-namespace',
     new \League\Container\Argument\Literal\StringArgument('Xplore\\Console\\Command\\')
 );
+
+$container->add(
+    'database:migrations:migrate',
+    Console\Command\MigrateDatabase::class
+)->addArgument(Connection::class);
 
 return $container;

@@ -7,14 +7,18 @@ use Doctrine\DBAL\DriverManager;
 
 class ConnectionFactory
 {
-    public function __construct(private Configuration $config)
-    {
-    }
-
     public function create()
     {
+
         $dbConfig = config('connections')[config('default')];
 
-        return DriverManager::getConnection($dbConfig, $this->config);
+        try {
+            $connection = DriverManager::getConnection($dbConfig);
+
+        } catch (\Doctrine\DBAL\Exception $e) {
+            throw new \RuntimeException('Connection failed: ' . $e->getMessage());
+        }
+
+        return $connection;
     }
 }
