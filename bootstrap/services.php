@@ -1,6 +1,7 @@
 <?php
 
 use Doctrine\DBAL\Connection;
+use League\Container\Argument\Literal\StringArgument;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Xplore\Application;
@@ -30,7 +31,7 @@ $viewsPath = BASE_PATH . '/resources/views';
 $cachePath = BASE_PATH . '/storage/cache/twig';
 
 $container->addShared('filesystem-loader', FileSystemLoader::class)
-    ->addArgument(new \League\Container\Argument\Literal\StringArgument($viewsPath));
+    ->addArgument(new StringArgument($viewsPath));
 
 $container->addShared('twig', function () use ($container, $cachePath) {
     $loader = $container->get('filesystem-loader');
@@ -68,12 +69,15 @@ $container->add(Console\Application::class)
 
 $container->add(
     'base-commands-namespace',
-    new \League\Container\Argument\Literal\StringArgument('Xplore\\Console\\Command\\')
+    new StringArgument('Xplore\\Console\\Command\\')
 );
 
 $container->add(
     'database:migrations:migrate',
     Console\Command\MigrateDatabase::class
-)->addArgument(Connection::class);
+)->addArguments([
+    Connection::class,
+    new StringArgument(BASE_PATH . '/migrations')
+]);
 
 return $container;
