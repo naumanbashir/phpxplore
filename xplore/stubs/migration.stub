@@ -2,9 +2,12 @@
 
 namespace Migrations;
 
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Types\Types;
+
 return new class
 {
-    public function up()
+    public function up(Schema $schema)
     {
         // Add migration logic here
     }
