@@ -20,4 +20,9 @@ return [
             'database' => BASE_PATH . '/database.sqlite',
         ],
     ],
+
+    'migrations' => [
+        'table' => 'migrations',
+        'path' => 'database/migrations',
+    ]
 ];

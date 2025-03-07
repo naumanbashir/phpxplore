@@ -12,22 +12,23 @@ class MigrateDatabase implements CommandInterface
 
     public string $name = 'database:migrations:migrate';
 
-    public function __construct(
-        private Connection $connection,
-        private string $migrationsPath
-    ) {}
+    public function __construct(private Connection $connection)
+    {
+        $migrationsConfig = config('database.migrations');
+
+        dd($migrationsConfig);
+    }
 
     public function execute(array $params = []): int
     {
         try {
             $this->createMigrationsTable();
 
+            /** -------------- Start Migrations Transaction -------------- */
             $this->connection->beginTransaction();
 
             $appliedMigrations = $this->getAppliedMigrations();
-
             $migrationFiles = $this->getMigrationFiles();
-
             $migrationsToApply = array_diff($migrationFiles, $appliedMigrations);
 
             /** Create Migrations SQL */
@@ -45,13 +46,12 @@ class MigrateDatabase implements CommandInterface
             }
 
             $this->connection->commit();
+            /** -------------- End Migrations Transaction -------------- */
 
             return 0;
 
         } catch (\Throwable $throwable) {
-
             $this->connection->rollBack();
-
             throw $throwable;
         }
     }

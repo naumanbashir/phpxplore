@@ -1,14 +1,16 @@
 <?php
 
 if (!function_exists('config')) {
-    function config($key, $default = null) {
+    function config(string $config, $default = null) {
+        [$configFile, $configurations ?? ''] = explode('.', $config);
+
         static $config = [];
 
         if (empty($config)) {
-            $config = require BASE_PATH . '/config/database.php';
+            $config = require BASE_PATH . '/config/' . $configFile . '.php';
         }
 
-        return $config[$key] ?? $default;
+        return $config[$configurations] ?? $default;
     }
 }
 

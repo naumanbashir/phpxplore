@@ -2,15 +2,14 @@
 
 namespace Xplore\Dbal;
 
-use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DriverManager;
 
 class ConnectionFactory
 {
     public function create()
     {
-
-        $dbConfig = config('connections')[config('default')];
+        $dbConfig = config('database');
+        $dbConfig = $dbConfig['connections'][$dbConfig['default']];
 
         try {
             $connection = DriverManager::getConnection($dbConfig);

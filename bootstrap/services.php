@@ -75,9 +75,6 @@ $container->add(
 $container->add(
     'database:migrations:migrate',
     Console\Command\MigrateDatabase::class
-)->addArguments([
-    Connection::class,
-    new StringArgument(BASE_PATH . '/migrations')
-]);
+)->addArgument(Connection::class);
 
 return $container;

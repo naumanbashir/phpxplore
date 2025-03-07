@@ -16,7 +16,7 @@ class MakeMigrationCommand implements CommandInterface
         $className = $timestamp . '_' . $params['resource'];
         $filename = "$migrationsDir/{$className}.php";
 
-        $stubPath = __DIR__ . '/../../../stubs/migration.stub';
+        $stubPath = __DIR__ . '/../../stubs/migration.stub';
         $content = StubLoader::loadStub($stubPath);
 
         file_put_contents($filename, $content);
