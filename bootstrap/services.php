@@ -6,6 +6,7 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Xplore\Application;
 use Xplore\Dbal\ConnectionFactory;
+use Xplore\Routing\Router;
 use Xplore\Routing\RouterInterface;
 use \Xplore\Console as Console;
 
@@ -20,7 +21,8 @@ $container = new League\Container\Container();
 
 $container->delegate(new League\Container\ReflectionContainer(true));
 
-$container->addShared(RouterInterface::class, \Xplore\Routing\Router::class);
+$container->addShared(RouterInterface::class, Router::class);
+//$container->addShared(Router::class, Router::class);
 
 $container->add(Application::class)
     ->addArgument(RouterInterface::class)

@@ -7,51 +7,90 @@ use FastRoute\RouteCollector;
 use Psr\Container\ContainerInterface;
 use Xplore\Exceptions\HttpException;
 use Xplore\Exceptions\HttpRequestMethodException;
+use Xplore\Http\Contracts\RequestInterface;
+use Xplore\Http\Contracts\ResponseInterface;
 use Xplore\Http\Request;
 use function FastRoute\simpleDispatcher;
 
 class Router implements RouterInterface
 {
-    public static array $routes;
+    private array $routes = [];
 
-    public static function route($method, $path, $handler): void
+    public function get(string $uri, callable|array $handler): void
     {
-        static::$routes[] = [strtoupper($method), $path, $handler];
-
+        $this->addRoute('GET', $uri, $handler);
     }
 
-    public function registerRoutes(RouteCollector $collector): void
+    public function post(string $uri, callable|array $handler): void
     {
-        foreach (static::$routes as $route) {
-            $collector->addRoute(...$route);
-        }
+        $this->addRoute('POST', $uri, $handler);
     }
 
-    public function dispatch(Request $request, ContainerInterface $container): array
+    public function put(string $uri, callable|array $handler): void
     {
-        $routeInfo = $this->getRouteInfo($request);
+        $this->addRoute('PUT', $uri, $handler);
+    }
 
-        [$handler, $vars] = $routeInfo;
+    public function delete(string $uri, callable|array $handler): void
+    {
+        $this->addRoute('DELETE', $uri, $handler);
+    }
 
-        if (is_array($handler)) {
-            [$controllerId, $method] = $handler;
-            $controller = $container->get($controllerId);
+    private function addRoute(string $method, string $uri, callable|array $handler): void
+    {
+        $this->routes[$method][$uri] = $handler;
+    }
+
+    public function dispatch(RequestInterface $request, ContainerInterface $container): ResponseInterface
+    {
+//        $method = $request->getMethod();
+//        $uri = $request->getUri();
+//        $handler = $this->routes[$method][$uri] ?? null;
+//
+//        if (!$handler) {
+//            return new Response(404, [], "404 Not Found");
+//        }
+//
+//        if (is_array($handler)) {
+//            [$controllerId, $method] = $handler;
+//            $controller = $container->get($controllerId);
+//        }
+//
+//        return [[$controller, $method], $vars];
+
+
+        $method = $request->getMethod();
+        $uri = $request->getUri();
+
+        foreach ($this->routes[$method] as $pattern => $handler) {
+            if (preg_match("#^$pattern$#", $uri, $matches)) {
+                array_shift($matches); // Remove the full match from the result
+
+                if (is_array($handler)) {
+                    [$controller, $method] = $handler;
+                    $response = (new $controller())->$method(...$matches);
+                } else {
+                    $response = call_user_func_array($handler, $matches);
+                }
+
+                return new Response(200, ['Content-Type' => 'text/html'], $response);
+            }
         }
 
-        return [[$controller, $method], $vars];
+        return new Response(404, [], "404 Not Found");
     }
 
     private function getRouteInfo(Request $request): array
     {
-        $dispatcher = simpleDispatcher(function(RouteCollector $routesCollector) {
-            $this->registerRoutes($routesCollector);
-        });
-
-
-        $routeInfo = $dispatcher->dispatch(
-            $request->getMethod(),
-            $request->getPathInfo()
-        );
+//        $dispatcher = simpleDispatcher(function(RouteCollector $routesCollector) {
+//            $this->registerRoutes($routesCollector);
+//        });
+//
+//
+//        $routeInfo = $dispatcher->dispatch(
+//            $request->getMethod(),
+//            $request->getPathInfo()
+//        );
 
         switch ($routeInfo[0]) {
             case Dispatcher::FOUND:

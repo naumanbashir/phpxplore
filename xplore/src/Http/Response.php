@@ -2,36 +2,60 @@
 
 namespace Xplore\Http;
 
-class Response
-{
-    private string $content;
-    private array $headers = [];
+use Xplore\Http\Contracts\ResponseInterface;
 
-    public function __construct(private int $statusCode = HttpResponse::OK)
+class Response implements ResponseInterface
+{
+    private int $statusCode;
+    private array $headers = [];
+    private string $body = '';
+
+    public function __construct(int $statusCode = 200, array $headers = [], string $body = '')
     {
-        $this->setStatusCode();
+        $this->statusCode = $statusCode;
+        $this->headers = $headers;
+        $this->body = $body;
     }
 
-    private function setStatusCode(): void
+    public function getStatusCode(): int
+    {
+        return $this->statusCode;
+    }
+
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
+    public function getBody(): string
+    {
+        return $this->body;
+    }
+
+    public function withStatus(int $code): self
+    {
+        $this->statusCode = $code;
+        return $this;
+    }
+
+    public function withHeader(string $name, string $value): self
+    {
+        $this->headers[$name] = $value;
+        return $this;
+    }
+
+    public function withBody(string $content): ResponseInterface
+    {
+        $this->body = $content;
+        return $this;
+    }
+
+    public function send(): void
     {
         http_response_code($this->statusCode);
+        foreach ($this->headers as $name => $value) {
+            header("$name: $value");
+        }
+        echo $this->body;
     }
-
-    public function send(): string
-    {
-        return $this->content;
-    }
-
-    public function setContent(?string $content): self
-    {
-        $this->content = $content;
-        return $this;
-    }
-
-    public function setHeaders(array $headers): self
-    {
-        $this->headers = $headers;
-        return $this;
-    }
-
 }
