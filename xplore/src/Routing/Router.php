@@ -2,19 +2,15 @@
 
 namespace Xplore\Routing;
 
-use FastRoute\Dispatcher;
-use FastRoute\RouteCollector;
 use Psr\Container\ContainerInterface;
-use Xplore\Exceptions\HttpException;
-use Xplore\Exceptions\HttpRequestMethodException;
 use Xplore\Http\Contracts\RequestInterface;
-use Xplore\Http\Contracts\ResponseInterface;
-use Xplore\Http\Request;
-use function FastRoute\simpleDispatcher;
+use Xplore\Http\Response;
 
 class Router implements RouterInterface
 {
     private array $routes = [];
+    private string $prefix = '';
+
 
     public function get(string $uri, callable|array $handler): void
     {
@@ -36,69 +32,61 @@ class Router implements RouterInterface
         $this->addRoute('DELETE', $uri, $handler);
     }
 
+    /**
+     * Add route to the router.
+     */
     private function addRoute(string $method, string $uri, callable|array $handler): void
     {
+        $uri = $this->prefix . '/' . trim($uri, '/');
         $this->routes[$method][$uri] = $handler;
     }
 
-    public function dispatch(RequestInterface $request, ContainerInterface $container): ResponseInterface
+    /**
+     * Process the incoming request and dispatch it.
+     */
+    public function dispatch(RequestInterface $request, ContainerInterface $container): Response
     {
-//        $method = $request->getMethod();
-//        $uri = $request->getUri();
-//        $handler = $this->routes[$method][$uri] ?? null;
-//
-//        if (!$handler) {
-//            return new Response(404, [], "404 Not Found");
-//        }
-//
-//        if (is_array($handler)) {
-//            [$controllerId, $method] = $handler;
-//            $controller = $container->get($controllerId);
-//        }
-//
-//        return [[$controller, $method], $vars];
-
-
         $method = $request->getMethod();
         $uri = $request->getUri();
+        $uri = rtrim($uri, '/') ?: '/';
 
-        foreach ($this->routes[$method] as $pattern => $handler) {
-            if (preg_match("#^$pattern$#", $uri, $matches)) {
-                array_shift($matches); // Remove the full match from the result
+        foreach ($this->routes[$method] ?? [] as $route => $handler) {
+            $params = [];
 
+            if ($this->matchRoute($route, $uri, $params)) {
+
+                // Execute Controller Method
                 if (is_array($handler)) {
                     [$controller, $method] = $handler;
-                    $response = (new $controller())->$method(...$matches);
-                } else {
-                    $response = call_user_func_array($handler, $matches);
+                    return (new $controller())->$method(...$params);
                 }
 
-                return new Response(200, ['Content-Type' => 'text/html'], $response);
+                // Execute Closure
+                return call_user_func_array($handler, $params);
             }
         }
 
         return new Response(404, [], "404 Not Found");
     }
 
-    private function getRouteInfo(Request $request): array
+    /**
+     * Match URI with route pattern and extract parameters.
+     */
+    private function matchRoute(string $route, string $uri, array &$params): bool
     {
-//        $dispatcher = simpleDispatcher(function(RouteCollector $routesCollector) {
-//            $this->registerRoutes($routesCollector);
-//        });
-//
-//
-//        $routeInfo = $dispatcher->dispatch(
-//            $request->getMethod(),
-//            $request->getPathInfo()
-//        );
+        $pattern = preg_replace_callback('/\{(\w+):([^}]+)\}/', function ($matches) {
+            return '(?P<' . $matches[1] . '>' . $matches[2] . ')';
+        }, str_replace('/', '\/', $route));
 
-        switch ($routeInfo[0]) {
-            case Dispatcher::FOUND:
-                return [$routeInfo[1], $routeInfo[2]];
-            case Dispatcher::METHOD_NOT_ALLOWED:
-                throw new HttpRequestMethodException();
-            default:
-                throw new HttpException('The request route is not found', 404);
+        if (preg_match('/^' . $pattern . '$/', $uri, $matches)) {
+            foreach ($matches as $key => $value) {
+                if (!is_int($key)) {
+                    $params[$key] = $value;
+                }
+            }
+            return true;
         }
+
+        return false;
     }
 }
