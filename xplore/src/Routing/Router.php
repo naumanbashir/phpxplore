@@ -57,8 +57,10 @@ class Router implements RouterInterface
 
                 // Execute Controller Method
                 if (is_array($handler)) {
-                    [$controller, $method] = $handler;
-                    return (new $controller())->$method(...$params);
+                    [$controllerClass, $controllerMethod] = $handler;
+                    $controller = $container->get($controllerClass);
+
+                    return $container->call([$controller, $controllerMethod], $params);
                 }
 
                 // Execute Closure

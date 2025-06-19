@@ -16,7 +16,7 @@ class Application
 
     public function __construct(
         private RouterInterface $router,
-        private ContainerInterface $container
+        public ContainerInterface $container
     )
     {
         static::$appEnv = env('APP_ENV', 'dev');

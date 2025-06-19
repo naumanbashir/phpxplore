@@ -26,7 +26,7 @@ final class Kernel
         $commandFiles = new \DirectoryIterator(__DIR__ . '/Command');
 
 
-        $namespace = $this->container->get('base-commands-namespace');
+        $namespace = 'Xplore\\Console\\Command\\';
 
         foreach ($commandFiles as $commandFile) {
 

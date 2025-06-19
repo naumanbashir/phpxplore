@@ -1,5 +1,6 @@
 <?php
 
+use \Xplore\Container\Container;
 use Doctrine\DBAL\Connection;
 use League\Container\Argument\Literal\StringArgument;
 use Twig\Environment;
@@ -16,26 +17,21 @@ $dotenv->load(BASE_PATH . '/.env');
 
 require_once BASE_PATH . '/xplore/src/Support/helpers.php';
 
+
 /** ---------------- Container Initialization --------------- */
-$container = new League\Container\Container();
 
-$container->delegate(new League\Container\ReflectionContainer(true));
-
-$container->addShared(RouterInterface::class, Router::class);
-//$container->addShared(Router::class, Router::class);
-
-$container->add(Application::class)
-    ->addArgument(RouterInterface::class)
-    ->addArgument($container);
+$container = new Container();
+$container->singleton(RouterInterface::class, Router::class);
+$container->bind(Application::class);
 
 /** ---------------------- Twig Templating Engine ---------------------- */
 $viewsPath = BASE_PATH . '/resources/views';
 $cachePath = BASE_PATH . '/storage/cache/twig';
 
-$container->addShared('filesystem-loader', FileSystemLoader::class)
-    ->addArgument(new StringArgument($viewsPath));
+$container->singleton('filesystem-loader', FileSystemLoader::class)
+    ->addArgument($viewsPath);
 
-$container->addShared('twig', function () use ($container, $cachePath) {
+$container->singleton('twig', function () use ($container, $cachePath) {
     $loader = $container->get('filesystem-loader');
     $twig = new Environment($loader, [
         'debug' => true,
@@ -51,30 +47,26 @@ $container->addShared('twig', function () use ($container, $cachePath) {
     return $twig;
 });
 
-$container->inflector(\Xplore\Controller\BaseController::class)
-    ->invokeMethod('setContainer', [$container]);
+$container->bind(\Xplore\Controller\BaseController::class, function ($controller) use ($container) {
+    $controller->setContainer($container);
+});
 
 /** ---------------------- Database Abstraction Layer ---------------------- */
-$container->add(ConnectionFactory::class);
+$container->bind(ConnectionFactory::class);
 
-$container->addShared(Connection::class, function () use ($container): Connection {
+$container->singleton(Connection::class, function () use ($container): Connection {
     return $container->get(ConnectionFactory::class)->create();
 });
 
 
 /** ---------------------- Console Command ---------------------- */
-$container->add(Console\Kernel::class)
+$container->bind(Console\Kernel::class)
     ->addArguments([$container, Console\Application::class]);
 
-$container->add(Console\Application::class)
+$container->bind(Console\Application::class)
     ->addArgument($container);
 
-$container->add(
-    'base-commands-namespace',
-    new StringArgument('Xplore\\Console\\Command\\')
-);
-
-$container->add(
+$container->bind(
     'database:migrations:migrate',
     Console\Command\MigrateDatabase::class
 )->addArgument(Connection::class);
