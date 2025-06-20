@@ -20,6 +20,7 @@ class Container implements ContainerInterface
     protected array $resolvedCallbacks = [];
     protected array $resolving = [];
     protected array $buildStack = [];
+    protected array $inflectors = [];
 
     public function bind(string $abstract, string|callable|null $concrete = null, bool $singleton = false): BindingDefinition
     {
@@ -105,6 +106,8 @@ class Container implements ContainerInterface
         }
 
         $this->fireResolvedCallbacks($abstract, $object);
+
+        $this->applyInflectors($object);
 
         return $object;
     }
@@ -235,6 +238,24 @@ class Container implements ContainerInterface
     {
         // Gracefully return null or placeholder (optional)
         return null;
+    }
+
+    public function inflector(string $type): InflectorBuilder
+    {
+        if (!isset($this->inflectors[$type])) {
+            $this->inflectors[$type] = new InflectorBuilder($type);
+        }
+
+        return $this->inflectors[$type];
+    }
+
+    protected function applyInflectors(mixed $object): void
+    {
+        foreach ($this->inflectors as $type => $inflector) {
+            if ($object instanceof $type) {
+                $inflector->apply($object, $this);
+            }
+        }
     }
 
     public function resolving(string $abstract, Closure $callback): void
