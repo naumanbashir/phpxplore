@@ -15,8 +15,7 @@ class Application
     public static string $appEnv;
 
     public function __construct(
-        private RouterInterface $router,
-        public ContainerInterface $container
+        private RouterInterface $router
     )
     {
         static::$appEnv = env('APP_ENV', 'dev');
@@ -40,7 +39,7 @@ class Application
     public function handleRequest(Request $request): string
     {
         try {
-            [$routeHandler, $vars] = $this->router->dispatch($request, $this->container);
+            [$routeHandler, $vars] = $this->router->dispatch($request);
 
             $response =  call_user_func_array($routeHandler, $vars);
 

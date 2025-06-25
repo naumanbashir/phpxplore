@@ -16,5 +16,5 @@ interface RouterInterface
 
     public function delete(string $uri, callable|array $handler): void;
 
-    public function dispatch(RequestInterface $request, ContainerInterface $container): ResponseInterface;
+    public function dispatch(RequestInterface $request): ResponseInterface;
 }

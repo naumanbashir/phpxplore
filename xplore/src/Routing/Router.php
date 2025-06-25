@@ -11,6 +11,12 @@ class Router implements RouterInterface
     private array $routes = [];
     private string $prefix = '';
 
+    public function __construct(
+        public ContainerInterface $container,
+    )
+    {
+    }
+
 
     public function get(string $uri, callable|array $handler): void
     {
@@ -44,7 +50,7 @@ class Router implements RouterInterface
     /**
      * Process the incoming request and dispatch it.
      */
-    public function dispatch(RequestInterface $request, ContainerInterface $container): Response
+    public function dispatch(RequestInterface $request): Response
     {
         $method = $request->getMethod();
         $uri = $request->getUri();
@@ -58,9 +64,11 @@ class Router implements RouterInterface
                 // Execute Controller Method
                 if (is_array($handler)) {
                     [$controllerClass, $controllerMethod] = $handler;
-                    $controller = $container->get($controllerClass);
+                    $controller = $this->container->get($controllerClass);
 
-                    return $container->call([$controller, $controllerMethod], $params);
+                    dd($this->container->call([$controller, $controllerMethod], $params));
+
+                    return $this->container->call([$controller, $controllerMethod], $params);
                 }
 
                 // Execute Closure

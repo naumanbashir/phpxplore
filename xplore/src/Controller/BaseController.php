@@ -3,6 +3,7 @@
 namespace Xplore\Controller;
 
 use Psr\Container\ContainerInterface;
+use Xplore\Http\HttpResponse;
 use Xplore\Http\Response;
 
 abstract class BaseController
@@ -18,8 +19,8 @@ abstract class BaseController
     {
         $content = $this->container->get('twig')->render($template, $parameters);
 
-        $response ??= new Response();
-        $response->setContent($content);
+        $response ??= new Response(HttpResponse::OK, [],$content);
+        $response->send();
 
         return $response;
     }

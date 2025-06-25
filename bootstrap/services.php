@@ -2,7 +2,6 @@
 
 use \Xplore\Container\Container;
 use Doctrine\DBAL\Connection;
-use League\Container\Argument\Literal\StringArgument;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Xplore\Application;
@@ -23,16 +22,16 @@ require_once BASE_PATH . '/xplore/src/Support/helpers.php';
 $container = new Container();
 $container->singleton(RouterInterface::class, Router::class);
 $container->bind(Application::class);
-
-/** ---------------------- Twig Templating Engine ---------------------- */
+//
+///** ---------------------- Twig Templating Engine ---------------------- */
 $viewsPath = BASE_PATH . '/resources/views';
 $cachePath = BASE_PATH . '/storage/cache/twig';
 
-$container->singleton('filesystem-loader', FileSystemLoader::class)
+$container->singleton(FileSystemLoader::class)
     ->addArgument($viewsPath);
 
-$container->singleton('twig', function () use ($container, $cachePath) {
-    $loader = $container->get('filesystem-loader');
+$container->singleton(Environment::class, function () use ($container, $cachePath) {
+    $loader = $container->get(FileSystemLoader::class);
     $twig = new Environment($loader, [
         'debug' => true,
         'cache' => $cachePath
@@ -47,9 +46,11 @@ $container->singleton('twig', function () use ($container, $cachePath) {
     return $twig;
 });
 
-$container->bind(\Xplore\Controller\BaseController::class, function ($controller) use ($container) {
-    $controller->setContainer($container);
-});
+
+$container->alias(Environment::class, 'twig');
+
+$container->inflector(\Xplore\Controller\BaseController::class)
+    ->invokeMethod('setContainer', [$container]);
 
 /** ---------------------- Database Abstraction Layer ---------------------- */
 $container->bind(ConnectionFactory::class);

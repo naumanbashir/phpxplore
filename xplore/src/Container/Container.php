@@ -30,6 +30,7 @@ class Container implements ContainerInterface
             $concrete = $abstract;
         }
 
+
         $definition = new BindingDefinition($concrete, $singleton);
 
         $this->bindings[$abstract] = $definition;
@@ -134,15 +135,10 @@ class Container implements ContainerInterface
             return new $concrete;
         }
 
-        $abstract = $concrete;
-        $bindingArgs = [];
 
-        if (isset($this->bindings[$concrete])) {
-            $binding = $this->bindings[$concrete];
-            $bindingArgs = $binding instanceof BindingDefinition
-                ? $binding->getArguments()
-                : [];
-        }
+        $abstract = $this->getAlias($concrete);
+        $binding = $this->bindings[$abstract] ?? null;
+        $bindingArgs = $binding instanceof BindingDefinition ? $binding->getArguments() : [];
 
         $dependencies = $constructor->getParameters();
         $instances = $this->resolveDependencies($dependencies, array_merge($bindingArgs, $parameters), $concrete);
@@ -154,16 +150,22 @@ class Container implements ContainerInterface
     {
         $results = [];
 
-        foreach ($parameters as $param) {
+
+        foreach ($parameters as $index => $param) {
             $name = $param->getName();
             $type = $param->getType();
+
+            if (array_key_exists($index, $overrides)) {
+                $results[] = $overrides[$index];
+                continue;
+            }
 
             if (array_key_exists($name, $overrides)) {
                 $results[] = $overrides[$name];
                 continue;
             }
 
-            $dependency = $type->getName();
+            $dependency = $type ? $type->getName() : $context;
 
             if ($dependency === ContainerInterface::class) {
                 $results[] = $this;
